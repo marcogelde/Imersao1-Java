@@ -2,34 +2,51 @@ import java.util.Scanner;
 
 public class Calculadora {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Digite o primeiro valor: ");
-        int numero1 = sc.nextInt();
-        System.out.println("Digite o segundo valor: ");
-        int numero2 = sc.nextInt();
-        int resultado = 0;
+        // Solicita ao usuário que insira o primeiro número
+        System.out.print("Digite o primeiro número: ");
+        double num1 = scanner.nextDouble();
 
-        System.out.print("Qual cálculo você quer fazer agora?\n1)Soma\n2)Subtração\n3)Multiplicação\n4)Divisão\nOpção:");
-        int opcao = sc.nextInt();
+        // Solicita ao usuário que insira o segundo número
+        System.out.print("Digite o segundo número: ");
+        double num2 = scanner.nextDouble();
 
-        switch (opcao) {
-            case 1:
-                resultado = numero1 + numero2;
+        // Solicita ao usuário que insira a operação desejada
+        System.out.print("Escolha a operação (+, -, *, /): ");
+        char operacao = scanner.next().charAt(0);
+
+        double resultado;
+
+        // Realiza a operação escolhida
+        switch (operacao) {
+            case '+':
+                resultado = num1 + num2;
                 break;
-            case 2:
-                resultado = numero1 - numero2;
+            case '-':
+                resultado = num1 - num2;
                 break;
-            case 3:
-                resultado = numero1 * numero2;
+            case '*':
+                resultado = num1 * num2;
                 break;
-            case 4:
-                resultado = numero1 / numero2;
+            case '/':
+                // Verifica se o segundo número não é zero para evitar divisão por zero
+                if (num2 != 0) {
+                    resultado = num1 / num2;
+                } else {
+                    System.out.println("Erro: Divisão por zero não é permitida.");
+                    scanner.close();
+                    return; // Sai do programa
+                }
                 break;
             default:
-                System.out.println("Opção invalida");
-                return;
+                System.out.println("Operação inválida.");
+                scanner.close();
+                return; // Sai do programa
         }
-        System.out.println("Resultado: " + resultado);
+
+        // Exibe o resultado da operação
+        System.out.println("O resultado é: " + resultado);
+        scanner.close();
     }
 }
