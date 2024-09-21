@@ -28,8 +28,7 @@ public class Calculadora {
                 break;
             default:
                 System.out.println("Opção invalida");
-                main(args);
-                break;
+                return;
         }
         System.out.println("Resultado: " + resultado);
     }
